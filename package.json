@@ -1,0 +1,13 @@
+{
+  "name": "TwitterVisualizationAndSentimentAnalysis",
+  "version": "1.0.0",
+  "main": "index.html",
+  "repository": "https://github.com/YuniorGlez/tw-sentiment-and-data-visualization.git",
+  "author": "Yunior González <dev@getinko.com>",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "bootstrap": "^3.3.7"
+  }
+}
