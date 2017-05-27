@@ -10,10 +10,20 @@
   </div>
 
   <div class="col-sm-8">
-    <span ng-click="Board.changeSearch(oldSearch)" ng-repeat="oldSearch in Board.searchedParams">
+    <span ng-click="Board.changeSearch(oldSearch)"
+          ng-repeat="oldSearch in Board.searchedParams">
       <b ng-if="oldSearch == Board.actualSearch">{{oldSearch}}</b>
       <span ng-if="oldSearch != Board.actualSearch">{{oldSearch}}</span>
     </span>
   </div>
-
 </nav>
+
+<main class="container">
+
+  <div class="col-sm-6">
+    <div ng-include="'partials/map.html'"></div>
+  </div>
+  <div class="col-sm-6">
+    <div ng-include="'partials/data.html'"></div>
+  </div>
+</main>

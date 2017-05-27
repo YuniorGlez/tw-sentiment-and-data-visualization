@@ -1,0 +1,18 @@
+<div class="text-center">
+    <ul class="nav nav-pills">
+    <li role="presentation" class="active"><a ng-click="Board.optionDataSelected = 'Generales'" >Generales</a></li>
+    <li role="presentation"><a ng-click="Board.optionDataSelected = 'Influencers'" >Influencers</a></li>
+    <li role="presentation"><a ng-click="Board.optionDataSelected = 'Negativos'" >Negativos</a></li>
+    <li role="presentation"><a ng-click="Board.optionDataSelected = 'Positivos'" >Positivos</a></li>
+    </ul>
+</div>
+
+    <div ng-if="Board.optionDataSelected == 'Generales'"
+         ng-include="'partials/data.generals.html'"></div>
+    <div ng-if="Board.optionDataSelected == 'Influencers'"
+         ng-include="'partials/data.influencers.html'"></div>
+    <div ng-if="Board.optionDataSelected == 'Negativos'"
+         ng-include="'partials/data.negative.html'"></div>
+    <div ng-if="Board.optionDataSelected == 'Positivos'"
+         ng-include="'partials/data.positive.html'"></div>
+
