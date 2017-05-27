@@ -12,7 +12,7 @@
         $routeProvider.when('/', {
             controller: 'DashboardController',
             controllerAs: 'Board',
-            templateUrl: '/views/dashboard.html'
+            templateUrl: '../views/dashboard.html'
         });
     }
 
