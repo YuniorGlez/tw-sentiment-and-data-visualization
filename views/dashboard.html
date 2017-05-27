@@ -1,3 +1,19 @@
-<h1>
-    {{Board.title}}
-</h1>
+<nav class="navbar">
+  <div class="col-sm-4">
+    <div class="input-group">
+      <input type="text" class="form-control" ng-model="Board.searchParam" placeholder="Buscar ...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="Board.search()">Buscar!</button>
+      </span>
+    </div>
+    <!-- /input-group -->
+  </div>
+
+  <div class="col-sm-8">
+    <span ng-click="Board.changeSearch(oldSearch)" ng-repeat="oldSearch in Board.searchedParams">
+      <b ng-if="oldSearch == Board.actualSearch">{{oldSearch}}</b>
+      <span ng-if="oldSearch != Board.actualSearch">{{oldSearch}}</span>
+    </span>
+  </div>
+
+</nav>
