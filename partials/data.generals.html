@@ -1,6 +1,18 @@
 <h1>Generales</h1>
 
-<tweet ng-repeat="tweet in Board.tweets">
-    <h1>{{tweet.author}}</h1>
-    <p>{{tweet.content}}</p>
-</tweet>
+<blockqoute
+    ng-repeat="tweet in Board.tweets track by tweet.id"
+    class="twitter-tweet">
+    <a>{{tweet.user.name}}</a>
+    <p>{{tweet.text}}</p>
+</blockqoute>
+<!--
+
+<blockqoute ng-repeat="tweet in Board.tweets track by tweet.id" class="twitter-tweet">
+    <p>{{tweet.text}}</p>
+    &mdash; {{tweet.user.name}} (@{{tweet.user.screen_name}})
+    <a href="https://twitter.com/{{tweet.user.screen_name}}/status/{{tweet.id}}"
+        data-datetime="{{tweet.timestamp_ms}}"></a>
+</blockqoute>
+    <script src="/libs/twitter/widgets.js"></script>
+-->

@@ -1,0 +1,75 @@
+blockquote.twitter-tweet {
+  display: inline-block;
+  font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 16px;
+  border-color: #eee #ddd #bbb;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  margin: 10px 5px;
+  padding: 0 16px 16px 16px;
+  max-width: 468px;
+}
+
+blockquote.twitter-tweet p {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 20px;
+}
+
+blockquote.twitter-tweet a {
+  color: inherit;
+  font-weight: normal;
+  text-decoration: none;
+  outline: 0 none;
+}
+
+blockquote.twitter-tweet a:hover,
+blockquote.twitter-tweet a:focus {
+  text-decoration: underline;
+}
+/*
+div.twitter-tweet-rendered p.entry-title {
+    font-family: Arial, sans-serif !important;
+    font-size: 14px !important;
+    padding: 5px !important;
+    background: #eee !important;
+    max-width: 300px !important;
+}
+
+div.twitter-tweet-rendered p.entry-title a.link {
+    font-family: Arial, sans-serif !important;
+    font-size: 14px !important;
+}
+
+div.twitter-tweet-rendered div.twt-border {
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+div.twitter-tweet-rendered iframe.twt-follow-button { display: none !important; }
+
+div.twitter-tweet-rendered div.footer ul.twt-actions {display: none !important;}
+
+div.twitter-tweet-rendered div.footer a.view-details {
+    display:block !important;
+    width: 120px !important;
+    margin: 5px 0 !important;
+    padding: 7px 0 !important;
+    background: #000 !important;
+    color: #fff !important;
+    text-decoration: none !important;
+    border-radius: 13px !important;
+    text-align: center !important;
+    box-shadow: -1px -1px 2px #555 !important;
+}
+
+div.twitter-tweet-rendered div.footer a.view-details span {
+    font: 14px Georgia, serif !important;
+    color: #fff !important;
+}
+*/
