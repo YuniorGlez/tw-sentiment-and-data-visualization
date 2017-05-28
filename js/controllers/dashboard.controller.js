@@ -12,6 +12,7 @@
         vm.changeSearch = changeSearch;
         vm.searchedParams = [];
         vm.actualSearch = '';
+        vm.data = {};
         activate();
 
         ////////////////
@@ -27,7 +28,7 @@
             vm.actualSearch = vm.searchParam;
             vm.searchParam = '';
             TS.search(vm.actualSearch)
-                .then((tweets) => vm.tweets = tweets,
+                .then((data) => vm.data = data,
                       errorHandler);
         }
 

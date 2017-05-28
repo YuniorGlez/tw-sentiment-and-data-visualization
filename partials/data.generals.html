@@ -1,11 +1,21 @@
 <h1>Generales</h1>
 
-<blockqoute
-    ng-repeat="tweet in Board.tweets track by tweet.id"
-    class="twitter-tweet">
+<div class="percent">
+    <p>Positivos => {{Board.data.stats.positivePercentage}} % </p>
+    <p>Negativos => {{Board.data.stats.negativePercentage}} % </p>
+    <p>Neutrales => {{Board.data.stats.neutralPercentage}} % </p>
+
+    <p>Num Tweets : {{Board.data.stats.num}}</p>
+</div>
+
+<blockquote
+    ng-show="true"
+    ng-repeat="tweet in Board.data.tweets track by tweet.id"
+    class="twitter-tweet"
+    ng-class="{negative : (tweet.sentiment < 0), positive : (tweet.sentiment > 0)}">
     <a>{{tweet.user.name}}</a>
     <p>{{tweet.text}}</p>
-</blockqoute>
+</blockquote>
 <!--
 
 <blockqoute ng-repeat="tweet in Board.tweets track by tweet.id" class="twitter-tweet">
