@@ -60,13 +60,22 @@
             };
         }
 
+        function groupTweetsByDays(tweets) {
+            return _.groupBy(tweets, (tweet) => {
+                var date = new Date(tweet.created_at);
+                return date.getDate() + '/' + (date.getMonth() + 1);
+            })
+            // return tweets;
+        }
+
         function addSentimentData(tweets) {
             return S.evaluateTweets(tweets)
                 .then((tweetsEvaluated) =>
                     ({
                         tweets: applyBestGeoToTweets(tweetsEvaluated),
                         users: getUsersData(tweetsEvaluated),
-                        stats: getStats(tweetsEvaluated)
+                        stats: getStats(tweetsEvaluated),
+                        timeline: groupTweetsByDays(tweetsEvaluated)
                     }),
                 (err) => { console.log(err);return [] })
         }
