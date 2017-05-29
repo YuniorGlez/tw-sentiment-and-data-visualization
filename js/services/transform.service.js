@@ -17,18 +17,46 @@
             return [];
         }
 
+        function applyBestGeoToTweets(tweets) {
+            return tweets.map(
+                (tweet) => angular.extend(tweet,
+                    { geolocation: calculateBestGeoPosition(tweet) }
+                ));
+        }
+
+        function calculateBestGeoPosition(tweet) {
+            var geo = { X : 0, Y : 0};
+            if (tweet.place != null) {
+                geo.code = tweet.place.country_code;
+            }
+            if (tweet.coordinates) {
+                geo.X = tweet.coordinates.coordinates[0];
+                geo.Y = tweet.coordinates.coordinates[1];
+            }
+            if (tweet.place ==null && tweet.user.location != null ) {
+                geo.location = tweet.user.location;
+            }
+            if (tweet.place ==null && tweet.user.location == null  && tweet.user.time_zone != null ) {
+                geo.time_zone = tweet.user.time_zone;
+            }
+            return geo;
+        }
+
         function getStats(tweets) {
-            var onlyPositive = (tweets.filter((tweet) => tweet.sentiment > 0));
-            var onlyNegative = (tweets.filter((tweet) => tweet.sentiment < 0));
-            var onlyNeutral = (tweets.filter((tweet) => tweet.sentiment == 0));
-            var geoActivated = (tweets.filter((tweet) => tweet.geo != null));
-            console.log('Tweets **', tweets);
+            let onlyPositive = (tweets.filter((tweet) => tweet.sentiment > 0));
+            let positivePercentage = Math.round( onlyPositive.length / tweets.length * 10000)/100;
+            let onlyNegative = (tweets.filter((tweet) => tweet.sentiment < 0));
+            let negativePercentage = Math.round( onlyNegative.length / tweets.length * 10000)/100;
+            let onlyNeutral = (tweets.filter((tweet) => tweet.sentiment == 0));
+            let neutralPercentage = Math.round( onlyNeutral.length / tweets.length * 10000)/100;
+            let geoActivated = (tweets.filter((tweet) => tweet.geo != null));
+            let geoPercentage = Math.round( geoActivated.length / tweets.length * 10000)/100;
             return {
                 num: tweets.length,
-                positivePercentage : Math.round( onlyPositive.length / tweets.length * 10000)/100,
-                negativePercentage : Math.round( onlyNegative.length / tweets.length * 10000)/100,
-                neutralPercentage : Math.round( onlyNeutral.length / tweets.length * 10000)/100,
-                geoPercentage : Math.round( geoActivated.length / tweets.length * 10000)/100
+                positivePercentage : positivePercentage,
+                negativePercentage : negativePercentage,
+                neutralPercentage : neutralPercentage,
+                geoPercentage : geoPercentage
             };
         }
 
@@ -36,7 +64,7 @@
             return S.evaluateTweets(tweets)
                 .then((tweetsEvaluated) =>
                     ({
-                        tweets: tweetsEvaluated,
+                        tweets: applyBestGeoToTweets(tweetsEvaluated),
                         users: getUsersData(tweetsEvaluated),
                         stats: getStats(tweetsEvaluated)
                     }),
