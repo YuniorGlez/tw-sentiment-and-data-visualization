@@ -13,6 +13,7 @@
         vm.searchedParams = [];
         vm.actualSearch = '';
         vm.data = {};
+        vm.ready = false;
         activate();
 
         ////////////////
@@ -28,7 +29,7 @@
             vm.actualSearch = vm.searchParam;
             vm.searchParam = '';
             TS.search(vm.actualSearch)
-                .then((data) => vm.data = data,
+                .then(successData,
                       errorHandler);
         }
 
@@ -37,6 +38,58 @@
         }
         function errorHandler(err) {
             console.log(err);
+        }
+        function successData(data) {
+            vm.data = data;
+            Highcharts.chart('chartPercentage', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: 0,
+                    plotShadow: false
+                },
+                title: {
+                    text: 'Sentimiento',
+                    align: 'center',
+                    verticalAlign: 'middle',
+                    y: 40
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        dataLabels: {
+                            enabled: true,
+                            distance: -50,
+                            style: {
+                                fontWeight: 'bold',
+                                color: 'white'
+                            }
+                        },
+                        startAngle: -90,
+                        endAngle: 90,
+                        center: ['50%', '75%']
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Porcentaje',
+                    innerSize: '50%',
+                    data: [
+                        ['Negativos',   vm.data.stats.negativePercentage],
+                        ['Neutrales',   vm.data.stats.neutralPercentage],
+                        ['Positivos',   vm.data.stats.positivePercentage]
+                        // {
+                        //     name: 'Proprietary or Undetectable',
+                        //     y: 0.2,
+                        //     dataLabels: {
+                        //         enabled: false
+                        //     }
+                        // }
+                    ]
+                }]
+            });
+            vm.ready = true;
         }
     }
 })();

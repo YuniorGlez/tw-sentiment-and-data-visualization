@@ -1,13 +1,25 @@
+<div ng-show="Board.ready">
 <h1>Generales</h1>
 
-<div class="percent">
-    <p>Positivos => {{Board.data.stats.positivePercentage}} % </p>
+<div class="percent row">
+    <!--<p>Positivos => {{Board.data.stats.positivePercentage}} % </p>
     <p>Negativos => {{Board.data.stats.negativePercentage}} % </p>
-    <p>Neutrales => {{Board.data.stats.neutralPercentage}} % </p>
+    <p>Neutrales => {{Board.data.stats.neutralPercentage}} % </p>-->
+    <div id="chartPercentage" class="left">
 
-    <p>Num Tweets : {{Board.data.stats.num}}</p>
+    </div>
+    <div class="right">
+        <h2>Num Tweets : {{Board.data.stats.num}}</h2>
+
+    </div>
+
+
 </div>
 
+<br>
+<br>
+<br>
+<br>
 <blockquote
     ng-show="true"
     ng-repeat="tweet in Board.data.tweets track by tweet.id"
@@ -26,3 +38,4 @@
 </blockqoute>
     <script src="/libs/twitter/widgets.js"></script>
 -->
+</div>

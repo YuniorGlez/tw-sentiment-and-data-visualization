@@ -5,4 +5,9 @@ blockquote.twitter-tweet.negative{
 blockquote.twitter-tweet.positive{
     border-color: green;
     border-width: 2px;
-2
+}
+
+#chartPercentage {
+    width: 300px;
+    height: 300px
+}
