@@ -21,7 +21,7 @@
 <br>
 <br>
 <blockquote
-    ng-show="true"
+    ng-show="Board.data.tweets.length > 0 && true"
     ng-repeat="tweet in Board.data.tweets track by tweet.id"
     class="twitter-tweet"
     ng-class="{negative : (tweet.sentiment < 0), positive : (tweet.sentiment > 0)}">

@@ -1,9 +1,9 @@
 <div class="text-center">
     <ul class="nav nav-pills">
-    <li role="presentation" class="active"><a ng-click="Board.optionDataSelected = 'Generales'" >Generales</a></li>
-    <li role="presentation"><a ng-click="Board.optionDataSelected = 'Influencers'" >Influencers</a></li>
-    <li role="presentation"><a ng-click="Board.optionDataSelected = 'Negativos'" >Negativos</a></li>
-    <li role="presentation"><a ng-click="Board.optionDataSelected = 'Positivos'" >Positivos</a></li>
+    <li role="presentation" ng-class="{active : Board.optionDataSelected == 'Generales'}"><a ng-click="Board.optionDataSelected = 'Generales'" >Generales</a></li>
+    <li role="presentation" ng-class="{active : Board.optionDataSelected == 'Influencers'}"><a ng-click="Board.optionDataSelected = 'Influencers'" >Influencers</a></li>
+    <li role="presentation" ng-class="{active : Board.optionDataSelected == 'Negativos'}"><a ng-click="Board.optionDataSelected = 'Negativos'" >Negativos</a></li>
+    <li role="presentation" ng-class="{active : Board.optionDataSelected == 'Positivos'}"><a ng-click="Board.optionDataSelected = 'Positivos'" >Positivos</a></li>
     </ul>
 </div>
 
