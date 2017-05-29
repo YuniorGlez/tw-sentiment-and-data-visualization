@@ -7,12 +7,12 @@
     </ul>
 </div>
 
-    <div ng-if="Board.optionDataSelected == 'Generales'"
+    <div ng-show="Board.optionDataSelected == 'Generales'"
          ng-include="'partials/data.generals.html'"></div>
-    <div ng-if="Board.optionDataSelected == 'Influencers'"
+    <div ng-show="Board.optionDataSelected == 'Influencers'"
          ng-include="'partials/data.influencers.html'"></div>
-    <div ng-if="Board.optionDataSelected == 'Negativos'"
+    <div ng-show="Board.optionDataSelected == 'Negativos'"
          ng-include="'partials/data.negative.html'"></div>
-    <div ng-if="Board.optionDataSelected == 'Positivos'"
+    <div ng-show="Board.optionDataSelected == 'Positivos'"
          ng-include="'partials/data.positive.html'"></div>
 

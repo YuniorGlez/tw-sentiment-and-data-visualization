@@ -1,41 +1,40 @@
 <div ng-show="Board.ready">
-<h1>Generales</h1>
+    <div class="percent row">
+        <!--<p>Positivos => {{Board.data.stats.positivePercentage}} % </p>
+        <p>Negativos => {{Board.data.stats.negativePercentage}} % </p>
+        <p>Neutrales => {{Board.data.stats.neutralPercentage}} % </p>-->
+        <div id="percentageChart" class="left col-sm-6">
 
-<div class="percent row">
-    <!--<p>Positivos => {{Board.data.stats.positivePercentage}} % </p>
-    <p>Negativos => {{Board.data.stats.negativePercentage}} % </p>
-    <p>Neutrales => {{Board.data.stats.neutralPercentage}} % </p>-->
-    <div id="chartPercentage" class="left">
+        </div>
+        <div class="positive right col-sm-3">
+            <h2>{{::Board.data.stats.positivePercentage | number:0}}%</h2>
+            <p>Positivos</p>
+        </div>
+        <div class="total-tweets right col-sm-3">
+            <h2>{{::Board.data.stats.num}}</h2>
+            <p>Tweets</p>
+        </div>
 
     </div>
-    <div class="right">
-        <h2>Num Tweets : {{Board.data.stats.num}}</h2>
-
+    <div class="timeline">
+        <div class="row" id="timelineChart"></div>
     </div>
 
+    <br>
+    <br>
 
-</div>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseTweets" aria-expanded="false" aria-controls="collapseExample">
+    Ver Tweets
+    </button>
+    <div class="collapse" id="collapseTweets">
+        <blockquote  ng-show="true" ng-repeat="tweet in ::Board.data.tweets track by tweet.id" class="twitter-tweet"
+            ng-class="{negative : (tweet.sentiment < 0), positive : (tweet.sentiment > 0)}">
+            <a>{{::tweet.user.name}}</a>
+            <p>{{::tweet.text}}</p>
+            <!--<b>Evaluado en {{tweet.evaluatedIn}}</b>
+            <br>
+            <b>Estaba en tw: {{tweet.lang}} us:{{tweet.user.lang}}</b>-->
+        </blockquote>
 
-<br>
-<br>
-<br>
-<br>
-<blockquote
-    ng-show="Board.data.tweets.length > 0 && true"
-    ng-repeat="tweet in Board.data.tweets track by tweet.id"
-    class="twitter-tweet"
-    ng-class="{negative : (tweet.sentiment < 0), positive : (tweet.sentiment > 0)}">
-    <a>{{tweet.user.name}}</a>
-    <p>{{tweet.text}}</p>
-</blockquote>
-<!--
-
-<blockqoute ng-repeat="tweet in Board.tweets track by tweet.id" class="twitter-tweet">
-    <p>{{tweet.text}}</p>
-    &mdash; {{tweet.user.name}} (@{{tweet.user.screen_name}})
-    <a href="https://twitter.com/{{tweet.user.screen_name}}/status/{{tweet.id}}"
-        data-datetime="{{tweet.timestamp_ms}}"></a>
-</blockqoute>
-    <script src="/libs/twitter/widgets.js"></script>
--->
+    </div>
 </div>

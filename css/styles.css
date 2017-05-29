@@ -7,13 +7,29 @@ blockquote.twitter-tweet.positive{
     border-width: 2px;
 }
 
-#chartPercentage {
-    width: 300px;
-    height: 300px
+#percentageChart {
+    width:  180px;
+    height: 180px
 }
 
 #map {
     width: 500px;
     height: 500px;
     margin-top: 60px;
+}
+
+.percent .positive.right{
+    margin-left: -80px;
+}
+.percent .right p {
+    margin: 0;
+    margin-top: -10px;
+    font-size: 0.8em;
+    color: rgba(0, 0, 0, 0.47);
+    font-weight: bold;
+}
+.percent .right{
+    height: 180px;
+    padding-top: 50px;
+    text-align: right;
 }
