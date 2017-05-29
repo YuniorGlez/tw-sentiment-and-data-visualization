@@ -26,6 +26,7 @@
                 tweets[idx].trimmedText = tweet.text.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
                 tweets[idx].trimmedText = tweets[idx].trimmedText.replace(/(\.?@)\w*/g, '');
                 tweets[idx].trimmedText = tweets[idx].trimmedText.replace(/(RT) *:/g, '');
+                if (tweets[idx].trimmedText.trim().length == 0) tweets[idx].trimmedText = 'Neutral';
             });
 
             //  Making the object to the clasiffier api in monkeylearn
@@ -33,9 +34,17 @@
                 text_list: tweets.map((tw) => tw.trimmedText)
             };
 
+            // return $http.get('fakePromise')
+            //     .then((neverSuccess) => neverSuccess,
+            //     (e) => tweets);
+
+
+
             // Request for sentiment
             return $http.post(
-                'https://api.monkeylearn.com/v2/classifiers/cl_u9PRHNzf/classify/',
+                'https://api.monkeylearn.com/v2/classifiers/cl_qkjxv9Ly/classify/?sandbox=1',
+                // Spanish 'https://api.monkeylearn.com/v2/classifiers/cl_u9PRHNzf/classify/',
+
                 texts,
                 {
                     headers: {
@@ -46,8 +55,8 @@
                 .then(function (response) {
                     // Modifying the var .sentiment and adding the simbol or 0 is neutral
                     response.data.result.forEach((result, idx) => {
-                        if (result[0].label == 'Positive') tweets[idx].sentiment = result[0].probability;
-                        else if (result[0].label == 'Negative') tweets[idx].sentiment = -result[0].probability;
+                        if (result[0].label == 'Positive' || result[0].label == 'positive') tweets[idx].sentiment = result[0].probability;
+                        else if (result[0].label == 'Negative' || result[0].label == 'negative') tweets[idx].sentiment = -result[0].probability;
                         else tweets[idx].sentiment = 0;
                     })
                     return tweets;
