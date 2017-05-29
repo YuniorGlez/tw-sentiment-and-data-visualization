@@ -1,10 +1,16 @@
 <div class="text-center">
     <ul class="nav nav-pills">
-    <li role="presentation" class="active"><a href="#">Sentimiento</a></li>
-    <li role="presentation"><a href="#">Tweets</a></li>
-    <li role="presentation"><a href="#">Recientes</a></li>
+    <li role="presentation" ng-class="{active : Board.optionMapSelected == 'Generales'}"><a ng-click="Board.optionMapSelected = 'Sentimiento'">Sentimiento</a></li>
+    <li role="presentation" ng-class="{active : Board.optionMapSelected == 'Tweets'}"><a ng-click="Board.optionMapSelected = 'Tweets'">Tweets</a></li>
+    <li role="presentation" ng-class="{active : Board.optionMapSelected == 'Recientes'}"><a ng-click="Board.optionMapSelected = 'Recientes'">Recientes</a></li>
     </ul>
 </div>
 
-<map data="Board.Data"></map>
+<!--<map data="Board.Data">
 
+</map>
+-->
+
+<div id="map">
+
+</div>
