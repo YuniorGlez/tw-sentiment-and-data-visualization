@@ -1,1 +1,29 @@
-<h1>Influencers</h1>
+<table class="table users-table">
+
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Num. Seguidores</th>
+            <th>Sentimiento</th>
+            <th>Tweets</th>
+        </tr>
+        <tr ng-repeat="user in ::Board.data.users | limitTo: 10" ng-click="Board.userTweets = user.tweets">
+            <td>@{{user.username}}</td>
+            <td>{{user.followers | number}}</td>
+            <td ng-class="{'positive-color' : user.sentiment > 0, 'negative-color' : user.sentiment < 0}"><b>{{user.sentiment | number:2}}</b></td>
+            <td>{{user.tweets.length}}</td>
+        </tr>
+    </thead>
+</table>
+
+<div id="collapseTweets">
+    <blockquote ng-repeat="tweet in Board.userTweets track by tweet.id" class="twitter-tweet"
+        ng-class="{negative : (tweet.sentiment < 0), positive : (tweet.sentiment > 0)}">
+        <a>{{::tweet.user.name}}</a>
+        <p>{{::tweet.text}}</p>
+        <!--<b>Evaluado en {{tweet.evaluatedIn}}</b>
+        <br>
+        <b>Estaba en tw: {{tweet.lang}} us:{{tweet.user.lang}}</b>-->
+    </blockquote>
+
+</div>

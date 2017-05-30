@@ -5,12 +5,15 @@
         .module('TFG')
         .controller('DashboardController', DashboardController);
 
-    DashboardController.$inject = ['TwitterSearchEngine', 'ChartsFactory', 'MapsFactory'];
+    DashboardController.$inject = ['TwitterSearchEngine', 'ChartsFactory', 'MapsFactory', '$scope'];
 
-    function DashboardController(TS, CF, MF) {
+    function DashboardController(TS, CF, MF, $scope) {
         var vm = this;
         vm.search = search;
+        vm.trick = trick;
         vm.changeSearch = changeSearch;
+        vm.onlyPositive = onlyPositive;
+        vm.onlyNegative = onlyNegative;
         vm.searchedParams = [];
         vm.actualSearch = '';
         vm.data = {};
@@ -24,17 +27,22 @@
         function activate() {
             vm.optionDataSelected = 'Generales';
             vm.optionMapSelected = 'Sentimiento';
-            if (simulation) setTimeout(search,1500);
+            // if (simulation) search();
         }
 
+        function trick() {
+            if (simulation) search();
+        }
 
         function search() {
-            // vm.searchedParams.push(vm.searchParam);
-            // vm.actualSearch = vm.searchParam;
-            // vm.searchParam = '';
+            vm.searchedParams.push(vm.searchParam);
+            vm.actualSearch = vm.searchParam;
+            vm.searchParam = '';
             if (simulation) {
                 var data = JSON.parse(localStorage.getItem('data'));
-                successData(data);
+                vm.ready = true;
+                // setTimeout(() => successData(data),200);
+                setTimeout(() => successData(data),200);
             }
             else {
                 TS.search(vm.actualSearch)
@@ -48,17 +56,25 @@
             vm.actualSearch = searchParam;
         }
 
+        function onlyNegative(user) {
+            return user.sentiment < 0;
+        }
+
+        function onlyPositive(user) {
+            return user.sentiment > 0;
+        }
+
         function errorHandler(err) {
             console.log(err);
         }
 
         function successData(data) {
             vm.data = data;
+            // $scope.$apply();
             localStorage.setItem('data', JSON.stringify(data));
             console.log('data **', data);
             vm.ready = true;
-            createCharts();
-            createMap();
+            createCharts(); createMap();
         }
 
         function createMap() {
@@ -79,7 +95,6 @@
                         ['Neutrales', vm.data.stats.neutralPercentage],
                         ['Positivos', vm.data.stats.positivePercentage]
             ]);
-            console.log(vm.data.timeline)
             CF.createTimelineChart('timelineChart', vm.data.timeline);
         }
     }

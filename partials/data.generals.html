@@ -1,23 +1,18 @@
 <div ng-show="Board.ready">
     <div class="percent row">
-        <!--<p>Positivos => {{Board.data.stats.positivePercentage}} % </p>
-        <p>Negativos => {{Board.data.stats.negativePercentage}} % </p>
-        <p>Neutrales => {{Board.data.stats.neutralPercentage}} % </p>-->
-        <div id="percentageChart" class="left col-sm-6">
-
-        </div>
-        <div class="positive right col-sm-3">
-            <h2>{{::Board.data.stats.positivePercentage | number:0}}%</h2>
+        <div id="percentageChart" class="left col-sm-6"></div>
+        <div class="positive right col-sm-2">
+            <h2>{{Board.data.stats.positivePercentage | number:0}}%</h2>
             <p>Positivos</p>
         </div>
         <div class="total-tweets right col-sm-3">
-            <h2>{{::Board.data.stats.num}}</h2>
+            <h2>{{Board.data.stats.num}}</h2>
             <p>Tweets</p>
         </div>
 
     </div>
     <div class="timeline">
-        <div class="row" id="timelineChart"></div>
+        <div class="row" id="timelineChart" ng-init="Board.trick()"></div>
     </div>
 
     <br>
