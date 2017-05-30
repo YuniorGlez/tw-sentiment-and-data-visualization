@@ -19,7 +19,7 @@ blockquote.twitter-tweet.positive{
 }
 
 .percent .positive.right{
-    margin-left: -80px;
+    margin-left: -20px;
 }
 .percent .right p {
     margin: 0;
@@ -32,4 +32,13 @@ blockquote.twitter-tweet.positive{
     height: 180px;
     padding-top: 50px;
     text-align: right;
+}
+.negative-color{
+    color: red;
+}
+.positive-color{
+    color: green;
+}
+table.users-table tr{
+    cursor: pointer
 }
