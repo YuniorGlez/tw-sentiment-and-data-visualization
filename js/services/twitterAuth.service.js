@@ -1,23 +1,51 @@
 
-//  , 'TWSecret', 'TWPublic'
-//  , TWSecret, TWPublic
-        // var consumerKey = encodeURIComponent(TWPublic);
-        // var consumerSecret = encodeURIComponent(TWSecret);
+(function () {
+    'use strict';
 
-        // var credentials = btoa(consumerKey + ':' + consumerSecret);
-        // console.log(credentials);
-        // // Twitters OAuth service endpoint
-        // $http.post(
-        //     'https://api.twitter.com/oauth2/token',
-        //     // "grant_type=client_credentials",
-        //     {
-        //             'grant_type' : 'client_credentials'
-        //     } ,{
-        //         headers: {
-        //             'Authorization': 'Basic ' + credentials,
-        //             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-        //         }
-        //     })
-        //     .then((response) => console.log(response)
-        //         , (response) => console.log("error ", response)
-        //     )
+    angular
+        .module('TFG')
+        .service('TwitterOauth', TwitterOauth);
+
+    TwitterOauth.$inject = [];
+
+    function TwitterOauth() {
+        this.signUp = signUp;
+        var provider = new firebase.auth.TwitterAuthProvider();
+        ////////////////
+
+        function signUp() {
+            return firebase.auth().signInWithPopup(provider).then(function (result) {
+                // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
+                // You can use these server side with your app's credentials to access the Twitter API.
+                var token = result.credential.accessToken;
+                var secret = result.credential.secret;
+                // The signed-in user info.
+                var user = result.user;
+                localStorage.setItem('logged', true);
+                var tw_object = {
+                    clientSecret: secret,
+                    oauthToken: token
+                };
+                localStorage.setItem('tw_object', JSON.stringify(tw_object));
+                return {
+                    user: user,
+                    token: token,
+                    secret: secret
+                };
+            }).catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                console.log(error);
+                // ...
+                return error;
+            });
+        }
+
+
+    }
+})();

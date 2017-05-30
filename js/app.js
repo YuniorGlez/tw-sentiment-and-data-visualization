@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular.module('TFG', ['ngRoute'])
@@ -8,12 +8,19 @@
         .constant('TWToken', '247017729-nGAWynqDVPfnlgJ0HNCVGKWuOQ0dnQWj0tP2TWzt')
         .constant('TWID', '247017729');
     router.$inject = ['$routeProvider'];
+
     function router($routeProvider) {
-        $routeProvider.when('/', {
-            controller: 'DashboardController',
-            controllerAs: 'Board',
-            templateUrl: 'views/dashboard.html'
-        });
+        $routeProvider
+            .when('/', {
+                controller: 'LoginController',
+                controllerAs: 'Login',
+                templateUrl: 'views/login.html'
+            })
+            .when('/home', {
+                controller: 'DashboardController',
+                controllerAs: 'Board',
+                templateUrl: 'views/dashboard.html'
+            });
     }
 
 })();
