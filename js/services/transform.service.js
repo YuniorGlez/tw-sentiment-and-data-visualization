@@ -79,10 +79,6 @@
         }
 
         function addSentimentData(tweets) {
-
-            // request to firebase for cached sentiments
-
-
             return S.evaluateTweets(tweets)
                 .then((tweetsEvaluated) =>
                     ({
