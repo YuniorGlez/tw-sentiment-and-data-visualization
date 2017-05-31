@@ -46,14 +46,14 @@
             }
             else {
                 TS.search(vm.actualSearch)
-                    .then(successData,
-                        errorHandler);
-
+                    .then(successData, errorHandler);
             }
         }
 
         function changeSearch(searchParam) {
             vm.actualSearch = searchParam;
+            TS.search(vm.actualSearch)
+                .then(successData, errorHandler);
         }
 
         function onlyNegative(user) {
@@ -71,8 +71,8 @@
         function successData(data) {
             vm.data = data;
             // $scope.$apply();
-            localStorage.setItem('data', JSON.stringify(data));
-            console.log('data **', data);
+            // localStorage.setItem('data', JSON.stringify(data));
+            // console.log('data **', data);
             vm.ready = true;
             createCharts(); createMap();
         }
