@@ -5,9 +5,9 @@
         .module('TFG')
         .factory('TwitterSearchEngine', TwitterSearchEngine);
 
-    TwitterSearchEngine.$inject = ['$http', 'TransformService', '$twitterApi'];
+    TwitterSearchEngine.$inject = ['$http', 'TransformService'];
 
-    function TwitterSearchEngine($http, T, $twitterApi) {
+    function TwitterSearchEngine($http, T) {
         var api = 'https://tfg-yuniorglez.c9users.io/';
         var atp = '&access_token_key=';
         var ats = '&access_token_secret=';
@@ -22,18 +22,17 @@
                     .then(successReadingTweets, errorHandler);
             }
 
-            return $http.get('/data/anotherFake.json')
-                .then(successReadingTweets, errorHandler);
+            // return $http.get('/data/anotherFake.json')
+            //     .then(successReadingTweets, errorHandler);
         }
 
         function successReadingTweets(response) {
             var data = response.data;
             var tweetsParsed = response.data;
-
-
+            // var tweetsParsed = response.data.map((tw) => JSON.parse(tw));
             console.log('Respuesta del server ', response);
-            // return T.transformProcess(tweetsParsed)
-            //     .then((tweets) => tweets);
+            return T.transformProcess(tweetsParsed)
+                .then((tweets) => tweets);
         }
 
         function errorHandler(err) {
