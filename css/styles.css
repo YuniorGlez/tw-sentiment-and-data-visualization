@@ -42,3 +42,32 @@ blockquote.twitter-tweet.positive{
 table.users-table tr{
     cursor: pointer
 }
+
+.modals-content{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+}
+.modals-content .fancymodal {
+    left: inherit;
+    right: inherit;
+    top: inherit;
+    bottom: inherit;
+    padding: 0;
+    width: 100%;
+    position: relative;
+    margin: 10px -10px;
+}
+.modals-content .fancymodal .fancymodal-content{
+    min-width: 350px;
+    background-color: rgba(243, 94, 94, 0.72);
+    float: right;
+    color: white;
+    font-weight: 200;
+    text-align: center;
+    padding: 2em .5em 1em .5em;
+}
+.modals-content .fancymodal .fancymodal-overlay{
+    background-color: transparent;
+}
