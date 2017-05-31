@@ -9,7 +9,7 @@
     <!-- /input-group -->
   </div>
 
-  <div class="col-sm-8">
+  <div ng-cloak class="col-sm-8">
     <span ng-click="Board.changeSearch(oldSearch)"
           ng-repeat="oldSearch in Board.searchedParams">
       <b ng-if="oldSearch == Board.actualSearch">{{oldSearch}}</b>
@@ -18,7 +18,7 @@
   </div>
 </nav>
 
-<main class="container">
+<main class="container"  cg-busy="Board.makingRequest">
 
   <div class="col-sm-6">
     <div ng-include="'partials/map.html'"></div>

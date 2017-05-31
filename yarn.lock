@@ -2,6 +2,14 @@
 # yarn lockfile v1
 
 
+angular-busy@^4.1.4:
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/angular-busy/-/angular-busy-4.1.4.tgz#b4f1b333ec7ced31c207db5e3d77665375d18ea0"
+
+"angular-fancy-modal@https://github.com/vesparny/angular-fancy-modal.git":
+  version "0.1.4"
+  resolved "https://github.com/vesparny/angular-fancy-modal.git#3c61a5f1944f9a92c0da222f0b7f7d86dbf5ca02"
+
 angular-route@^1.6.4:
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/angular-route/-/angular-route-1.6.4.tgz#7bb216fcda746a1b8c452054b05900a7074ecc62"

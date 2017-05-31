@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('TFG', ['ngRoute'])
+    angular.module('TFG', ['ngRoute', 'cgBusy', 'vesparny.fancyModal'])
         .config(router)
         .constant('TWSecret', 'xsuboKctmcbYGB52h6cpyjO4KhhqoLOee3tkX2m1dY2LcCRnu4')
         .constant('TWPublic', 'zubZEDS6AG4yrQoDFPZx8ZBjp')

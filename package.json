@@ -7,6 +7,8 @@
   "license": "MIT",
   "dependencies": {
     "angular": "^1.6.4",
+    "angular-busy": "^4.1.4",
+    "angular-fancy-modal": "https://github.com/vesparny/angular-fancy-modal.git",
     "angular-route": "^1.6.4",
     "bootstrap": "^3.3.7",
     "highcharts": "^5.0.12",

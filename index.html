@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TFG</title>
+    <link rel="stylesheet" href="libs/angular-csp.css">
+    <link rel="stylesheet" href="libs/angular-busy.min.css">
+    <link rel="stylesheet" href="libs/angular-fancy-modal.min.css">
     <link rel="stylesheet" href="libs/bootstrap.min.css">
     <link rel="stylesheet" href="css/tweets.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -13,6 +16,7 @@
 
     <div ng-view></div>
 
+    <div class="modals-content"></div>
     <!-- Third party libraries-->
     <script src="libs/jquery.min.js"></script>
     <script src="libs/firebase.js"></script>
@@ -32,6 +36,10 @@
     <script src="libs/bootstrap.min.js"></script>
     <script src="libs/angular.min.js"></script>
     <script src="libs/angular-route.min.js"></script>
+    <script src="libs/angular-busy.min.js"></script>
+    <script src="libs/angular-fancy-modal.js"></script>
+    <script src="libs/angular-busy.min.js"></script>
+
     <script src="libs/lodash.min.js"></script>
     <script src="libs/highcharts.src.js"></script>
     <script src="libs/map.js"></script>
@@ -45,6 +53,7 @@
     <script src="js/services/sentiment.service.js"></script>
     <script src="js/services/transform.service.js"></script>
     <script src="js/services/twitterAuth.service.js"></script>
+    <script src="js/factories/errorHandler.factory.js"></script>
     <script src="js/factories/twitterSearch.factory.js"></script>
     <script src="js/factories/charts.factory.js"></script>
     <script src="js/factories/maps.factory.js"></script>
