@@ -21,9 +21,10 @@
                 return $http.get(url)
                     .then(successReadingTweets, errorHandler);
             }
-
-            // return $http.get('/data/anotherFake.json')
-            //     .then(successReadingTweets, errorHandler);
+            else {
+                $http.get('/data/anotherFake.json').then(successReadingTweets, errorHandler);
+            }
+            // return $http.get('/data/anotherFake.json').then(successReadingTweets, errorHandler);
         }
 
         function successReadingTweets(response) {
