@@ -2,9 +2,9 @@
     'use strict';
     angular.module('TFG').service('SentimentAnalysis', SentimentAnalysis);
 
-    SentimentAnalysis.$inject = ['$http'];
+    SentimentAnalysis.$inject = ['$http','$exceptionHandler'];
 
-    function SentimentAnalysis($http) {
+    function SentimentAnalysis($http,$exceptionHandler) {
         this.evaluateTweets = evaluateTweets;
         var urlSpanishAPI = 'https://api.monkeylearn.com/v2/classifiers/cl_u9PRHNzf/classify/';
         var urlEnglishAPI = 'https://api.monkeylearn.com/v2/classifiers/cl_qkjxv9Ly/classify/?sandbox=1';
@@ -77,17 +77,15 @@
                         })
 
                 },
-                (error) => {
-                    console.log(error);
-                    return [];
-                });
+                $exceptionHandler
+            );
 
             // Request for english sentiment before spanish
         }
 
         function englishSentiment(tweets, englishTexts, spanishTexts) {
             if (englishTexts.text_list.length > 0)
-            
+
                 return $http.post(urlEnglishAPI, englishTexts, config)
                     .then(function (response) {
                         userAPIResults(response, tweets, englishTexts, 'English');
