@@ -19,10 +19,10 @@
                 var url = api + 'search?q=' + encodeURI(param);
                 url += atp + tw.oauthToken + ats + tw.clientSecret;
                 return $http.get(url)
-                    .then(successReadingTweets, errorHandler);
+                    .then(successReadingTweets);
             }
             else {
-                $http.get('/data/anotherFake.json').then(successReadingTweets, errorHandler);
+                $http.get('/data/anotherFake.json').then(successReadingFakeTweets);
             }
             // return $http.get('/data/anotherFake.json').then(successReadingTweets, errorHandler);
         }
@@ -35,12 +35,9 @@
             return T.transformProcess(tweetsParsed)
                 .then((tweets) => tweets);
         }
-
-        function errorHandler(err) {
-            console.log(err);
-            return [];
+        function successReadingFakeTweets(response) {
+            successReadingTweets({ data: response.data.map((tw) => JSON.parse(tw)) });
         }
-
         return {
             search: search
         };
