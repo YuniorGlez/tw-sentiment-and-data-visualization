@@ -86,8 +86,7 @@
                         users: getUsersData(tweetsEvaluated),
                         stats: getStats(tweetsEvaluated),
                         timeline: groupTweetsByDays(tweetsEvaluated)
-                    }),
-                (err) => []);
+                    }));
         }
 
         function transformProcess(tweets) {
