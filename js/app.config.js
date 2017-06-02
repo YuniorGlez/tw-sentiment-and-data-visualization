@@ -10,7 +10,5 @@
                 },
                 spaClasificator : 'https://api.monkeylearn.com/v2/classifiers/cl_u9PRHNzf/classify/',
                 engClasificator : 'https://api.monkeylearn.com/v2/classifiers/cl_qkjxv9Ly/classify/?sandbox=1'
-            })
-        .constant()
-        .constant()
+            });
 })();
