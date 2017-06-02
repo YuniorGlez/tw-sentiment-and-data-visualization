@@ -71,3 +71,13 @@ table.users-table tr{
 .modals-content .fancymodal .fancymodal-overlay{
     background-color: transparent;
 }
+.yun-modal {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 40%;
+    background-color: rgb(180, 182, 218);
+    height: 100vh;
+    overflow-y: scroll;
+    padding: 20px 20px 20px 40px;
+}
