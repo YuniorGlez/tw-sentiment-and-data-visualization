@@ -2,16 +2,13 @@
     'use strict';
     angular.module('TFG').service('SentimentAnalysis', SentimentAnalysis);
 
-    SentimentAnalysis.$inject = ['$http','$exceptionHandler', '$q'];
+    SentimentAnalysis.$inject = ['$http', 'MonkeyData', '$exceptionHandler', '$q'];
 
-    function SentimentAnalysis($http,$exceptionHandler, $q) {
+    function SentimentAnalysis($http, MonkeyData, $exceptionHandler, $q) {
         this.evaluateTweets = evaluateTweets;
-        var urlSpanishAPI = 'https://api.monkeylearn.com/v2/classifiers/cl_u9PRHNzf/classify/';
-        var urlEnglishAPI = 'https://api.monkeylearn.com/v2/classifiers/cl_qkjxv9Ly/classify/?sandbox=1';
-        var config = {};
-        config.headers = {};
-        config.headers['Authorization'] = 'Token cfbfbc1027280ee239c931823168b93030dac1ee';
-        config.headers['Content-Type'] = 'application/json';
+        var urlSpanishAPI = MonkeyData.spaClasificator;
+        var urlEnglishAPI = MonkeyData.engClasificator;
+        var config = { headers : MonkeyData.headers};
 
         var fireDatabaseSpaTexts = firebase.database().ref('/texts/spa/');
         var fireDatabaseEngTexts = firebase.database().ref('/texts/eng/');
