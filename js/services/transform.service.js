@@ -16,6 +16,7 @@
                 groupedByUsername[username] = {
                     tweets: temp,
                     username: username,
+                    id : tweets[0].user.id,
                     followers: tweets[0].user.followers_count,
                     sentiment: _.mean(tweets.filter(
                         (tw) => tw.sentiment != 0)
