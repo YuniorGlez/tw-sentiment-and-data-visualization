@@ -2,9 +2,9 @@
     'use strict';
     angular.module('TFG').service('SentimentAnalysis', SentimentAnalysis);
 
-    SentimentAnalysis.$inject = ['$http','$exceptionHandler'];
+    SentimentAnalysis.$inject = ['$http','$exceptionHandler', '$q'];
 
-    function SentimentAnalysis($http,$exceptionHandler) {
+    function SentimentAnalysis($http,$exceptionHandler, $q) {
         this.evaluateTweets = evaluateTweets;
         var urlSpanishAPI = 'https://api.monkeylearn.com/v2/classifiers/cl_u9PRHNzf/classify/';
         var urlEnglishAPI = 'https://api.monkeylearn.com/v2/classifiers/cl_qkjxv9Ly/classify/?sandbox=1';
@@ -28,6 +28,7 @@
                 // tweets[idx].trimmedText = tweets[idx].trimmedText.replace(/[ ]*/g, ' ');
                 if (tweets[idx].trimmedText.trim().length == 0) tweets[idx].trimmedText = 'Neutral';
             });
+
 
             //  Making the objects groupBy language to the clasiffier api in monkeylearn
             var englishTweets = tweets.filter(
@@ -73,7 +74,7 @@
                                     _.pull(englishTexts.text_list, txt);
                                 }
                             });
-                            return englishSentiment(tweets, englishTexts, spanishTexts);
+                            return monkeySentiment(tweets, englishTexts, spanishTexts);
                         })
 
                 },
@@ -83,31 +84,45 @@
             // Request for english sentiment before spanish
         }
 
-        function englishSentiment(tweets, englishTexts, spanishTexts) {
-            if (englishTexts.text_list.length > 0)
+        function monkeySentiment(tweets, englishTexts, spanishTexts) {
+            if (englishTexts.text_list.length > 0 || spanishTexts.text_list.length > 0){
 
-                return $http.post(urlEnglishAPI, englishTexts, config)
-                    .then(function (response) {
-                        userAPIResults(response, tweets, englishTexts, 'English');
-                        return spanishSentiment(tweets, englishTexts, spanishTexts);
-                    });
-            else
-                return spanishSentiment(tweets, englishTexts, spanishTexts);
+                // Make parallel Calls divide by 100
+                // var defer = $q.defer();
+                var englishPromises = [];
+                var spanishPromises = [];
+                var englishPieces = _.chunk(englishTexts.text_list, 100);
+                var spanishPieces = _.chunk(spanishTexts.text_list, 100);
+
+                englishPieces.forEach( (texts) => {
+                    if (texts.length > 0)
+                        englishPromises.push(monkeyPromise(urlEnglishAPI, { text_list : texts}, config, 'English'));
+                })
+
+                spanishPieces.forEach( (texts) => {
+                    if (texts.length > 0)
+                        spanishPromises.push(monkeyPromise(urlSpanishAPI, { text_list : texts}, config, 'Spanish'));
+                })
+
+                return $q.all(_.concat(englishPromises, spanishPromises)).then(() => {
+                    // defer.resolve(tweets);
+                    return tweets;
+                })
+
+                // return defer.promise;
+
+                function monkeyPromise (url, texts, config, lang){
+                    return $http.post(url, texts, config, lang)
+                        .then((response) =>  monkeyAPIResults(response, tweets, texts, lang));
+                }
+
+            }
+        else
+            return tweets
 
         }
 
-        function spanishSentiment(tweets, englishTexts, spanishTexts) {
-            if (spanishTexts.text_list.length > 0)
-                return $http.post(urlSpanishAPI, spanishTexts, config)
-                    .then(function (response) {
-                        userAPIResults(response, tweets, spanishTexts, 'Spanish');
-                        return tweets;
-                    });
-            else
-                return tweets;
-        }
-
-        function userAPIResults(response, tweets, texts, key) {
+        function monkeyAPIResults(response, tweets, texts, key) {
             response.data.result.forEach((result, idx) => {
                 extendTweetsWithThisText(tweets, texts.text_list[idx], {
                     evaluatedIn: key
