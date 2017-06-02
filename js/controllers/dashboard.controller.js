@@ -11,13 +11,20 @@
         var vm = this;
         vm.search = search;
         vm.changeSearch = changeSearch;
+        vm.getUserInfo = getUserInfo;
+
+        // FILTERS
+        vm.relatedTweets = relatedTweets;
         vm.onlyPositive = onlyPositive;
         vm.onlyNegative = onlyNegative;
+
         vm.searchedParams = [];
         vm.actualSearch = '';
+        vm.userSelected = {};
         vm.data = {};
         vm.ready = false;
 
+        var allWordsToFind = [];
         activate();
 
         ////////////////
@@ -32,9 +39,22 @@
             vm.ready = false;
             vm.searchedParams.push(vm.searchParam);
             vm.actualSearch = vm.searchParam;
+            allWordsToFind = vm.actualSearch.split(' ');
             vm.searchParam = '';
             vm.makingRequest = TS.search(vm.actualSearch)
                 .then(successData, errorHandler);
+        }
+
+        function getUserInfo(idUser){
+            TS.searchUserInfo(idUser)
+                .then( (user) => {
+                    if (!vm.userSelected)
+                        vm.userSelected = user;
+                    else
+                        angular.extend(vm.userSelected, user);
+                });
+            TS.searchTweetsFromUser(idUser)
+                .then( (tweets) => vm.userSelected.tweets = tweets);
         }
 
         function changeSearch(searchParam) {
@@ -43,9 +63,24 @@
                 .then(successData, errorHandler);
         }
 
-        function onlyNegative(user) { return user.sentiment < 0; }
 
+        /////////  FILTERS  ////////
+        function onlyNegative(user) { return user.sentiment < 0; }
         function onlyPositive(user) { return user.sentiment > 0; }
+
+        function relatedTweets(tweet) {
+            var flag = true;
+            var copyLower = tweet.text.toLowerCase();
+            console.log(copyLower);
+            allWordsToFind.forEach( (word) => {
+                if (copyLower.indexOf(word.toLowerCase()) == -1 ) flag = false;
+            });
+            return flag;
+        }
+        ////////  END FILTERS //////////////
+
+
+
 
         function errorHandler(err) {
             console.log(err);
