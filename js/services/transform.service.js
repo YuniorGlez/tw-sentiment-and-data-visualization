@@ -6,8 +6,37 @@
 
     function TransformService(S) {
         this.transformProcess = transformProcess;
-
         ////////////////
+
+        function transformProcess(tweets) {
+            return addSentimentData(tweets);
+        }
+
+        function addSentimentData(tweets) {
+            return S.evaluateTweets(tweets)
+                .then((tweetsEvaluated) =>
+                    ({
+                        tweets: applyBestGeoToTweets(tweetsEvaluated),
+                        users: getUsersData(tweetsEvaluated),
+                        stats: getStats(tweetsEvaluated),
+                        timeline: groupTweetsByDays(tweetsEvaluated)
+                    }));
+        }
+
+        function applyBestGeoToTweets(tweets) {
+            return tweets.map((tweet) => angular.extend(tweet, {geolocation: calculateBestGeoPosition(tweet)}));
+        }
+
+        function calculateBestGeoPosition(tweet) {
+            var geo = {X: 0, Y: 0};
+            if (tweet.coordinates) {
+                geo.X = tweet.coordinates.coordinates[0];
+                geo.Y = tweet.coordinates.coordinates[1];
+            }
+            if (tweet.place == null && tweet.user.location != null) geo.location = tweet.user.location;
+            if (tweet.place == null && tweet.user.location == null && tweet.user.time_zone != null) geo.time_zone = tweet.user.time_zone;
+            return geo;
+        }
 
         function getUsersData(tweets) {
             var groupedByUsername = _.groupBy(tweets, (tw) => tw.user.screen_name);
@@ -18,37 +47,14 @@
                     username: username,
                     id : tweets[0].user.id,
                     followers: tweets[0].user.followers_count,
-                    sentiment: _.mean(tweets.filter(
-                        (tw) => tw.sentiment != 0)
-                        .map(
-                        (tw) => tw.sentiment))
+                    sentiment: _.mean( tweets.filter((tw) => tw.sentiment != 0).map((tw) => tw.sentiment) )
                 };
             })
-            return _.orderBy(_.values(groupedByUsername), (u) => -u.followers);
+            return orderByFollowers(_.values(groupedByUsername));
         }
 
-        function applyBestGeoToTweets(tweets) {
-            return tweets.map(
-                (tweet) => angular.extend(tweet, {
-                    geolocation: calculateBestGeoPosition(tweet)
-                }));
-        }
-
-        function calculateBestGeoPosition(tweet) {
-            var geo = {
-                X: 0,
-                Y: 0
-            };
-            // if (tweet.place != null) geo.code = tweet.place.country_code;
-            if (tweet.coordinates) {
-                geo.X = tweet.coordinates.coordinates[0];
-                geo.Y = tweet.coordinates.coordinates[1];
-            }
-            if (tweet.place == null && tweet.user.location != null)
-                geo.location = tweet.user.location;
-            if (tweet.place == null && tweet.user.location == null && tweet.user.time_zone != null)
-                geo.time_zone = tweet.user.time_zone;
-            return geo;
+        function orderByFollowers(users){
+            return _.orderBy(users, (u) => -u.followers);
         }
 
         function getStats(tweets) {
@@ -60,6 +66,7 @@
             let neutralPercentage = Math.round(onlyNeutral.length / tweets.length * 10000) / 100;
             let geoActivated = tweets.filter((tweet) => tweet.geo != null);
             let geoPercentage = Math.round(geoActivated.length / tweets.length * 10000) / 100;
+
             return {
                 num: tweets.length,
                 positivePercentage: positivePercentage,
@@ -76,22 +83,7 @@
             return _.groupBy(tweets, (tweet) => {
                 var date = new Date(tweet.created_at);
                 return date.getDate() + '/' + (date.getMonth() + 1);
-            })
-        }
-
-        function addSentimentData(tweets) {
-            return S.evaluateTweets(tweets)
-                .then((tweetsEvaluated) =>
-                    ({
-                        tweets: applyBestGeoToTweets(tweetsEvaluated),
-                        users: getUsersData(tweetsEvaluated),
-                        stats: getStats(tweetsEvaluated),
-                        timeline: groupTweetsByDays(tweetsEvaluated)
-                    }));
-        }
-
-        function transformProcess(tweets) {
-            return addSentimentData(tweets);
+            });
         }
 
     }
