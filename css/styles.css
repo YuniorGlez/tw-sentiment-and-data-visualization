@@ -1,14 +1,7 @@
-blockquote.twitter-tweet.negative{
-    border-color: red;
-    border-width: 2px;
-}
-blockquote.twitter-tweet.positive{
-    border-color: green;
-    border-width: 2px;
-}
+
 
 #percentageChart {
-    width:  180px;
+    width: 180px;
     height: 180px
 }
 
@@ -18,9 +11,10 @@ blockquote.twitter-tweet.positive{
     margin-top: 60px;
 }
 
-.percent .positive.right{
+.percent .positive.right {
     margin-left: -20px;
 }
+
 .percent .right p {
     margin: 0;
     margin-top: -10px;
@@ -28,27 +22,32 @@ blockquote.twitter-tweet.positive{
     color: rgba(0, 0, 0, 0.47);
     font-weight: bold;
 }
-.percent .right{
+
+.percent .right {
     height: 180px;
     padding-top: 50px;
     text-align: right;
 }
-.negative-color{
+
+.negative-color {
     color: red;
 }
-.positive-color{
+
+.positive-color {
     color: green;
 }
-table.users-table tr{
+
+table.users-table tr {
     cursor: pointer
 }
 
-.modals-content{
+.modals-content {
     position: absolute;
     right: 0;
     bottom: 0;
     width: 100%;
 }
+
 .modals-content .fancymodal {
     left: inherit;
     right: inherit;
@@ -59,7 +58,8 @@ table.users-table tr{
     position: relative;
     margin: 10px -10px;
 }
-.modals-content .fancymodal .fancymodal-content{
+
+.modals-content .fancymodal .fancymodal-content {
     min-width: 350px;
     background-color: rgba(243, 94, 94, 0.72);
     float: right;
@@ -68,16 +68,23 @@ table.users-table tr{
     text-align: center;
     padding: 2em .5em 1em .5em;
 }
-.modals-content .fancymodal .fancymodal-overlay{
+
+.modals-content .fancymodal .fancymodal-overlay {
     background-color: transparent;
 }
+
 .yun-modal {
     position: fixed;
-    right: 0;
+    right: -40%;
     top: 0;
     width: 40%;
     background-color: rgb(180, 182, 218);
     height: 100vh;
     overflow-y: scroll;
     padding: 20px 20px 20px 40px;
+    transition: 0.4s all ease;
+}
+
+.yun-modal.activate {
+    right: 0;
 }
