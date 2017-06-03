@@ -5,13 +5,5 @@
         <li role="presentation" ng-class="{active : Board.optionMapSelected == 'Recientes'}"><a ng-click="Board.optionMapSelected = 'Recientes'">Recientes</a></li>
     </ul>
 </div>
-
-<!--<map data="Board.Data">
-
-</map>
--->
-
 <small ng-show="Board.data.tweets.length > 0">En el mapa solo saldrán aquellos tweets que tienen datos geográficos</small>
-<div id="map">
-
-</div>
+<div class="map" id="map"></div>

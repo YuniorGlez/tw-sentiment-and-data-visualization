@@ -1,5 +1,4 @@
 <table class="table users-table">
-
     <thead>
         <tr>
             <th>Usuario</th>
@@ -17,13 +16,9 @@
 </table>
 
 <div id="collapseTweets">
-    <blockquote ng-repeat="tweet in Board.userTweets track by tweet.id" class="twitter-tweet"
-        ng-class="{negative : (tweet.sentiment < 0), positive : (tweet.sentiment > 0)}">
+    <blockquote ng-repeat="tweet in Board.userTweets track by tweet.id" class="twitter-tweet" ng-class="{negative : (tweet.sentiment < 0), positive : (tweet.sentiment > 0)}">
         <a>{{::tweet.user.name}}</a>
         <p>{{::tweet.text}}</p>
-        <!--<b>Evaluado en {{tweet.evaluatedIn}}</b>
-        <br>
-        <b>Estaba en tw: {{tweet.lang}} us:{{tweet.user.lang}}</b>-->
     </blockquote>
 
 </div>

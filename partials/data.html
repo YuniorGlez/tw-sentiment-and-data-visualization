@@ -1,18 +1,13 @@
 <div class="text-center">
     <ul class="nav nav-pills">
-    <li role="presentation" ng-class="{active : Board.optionDataSelected == 'Generales'}"><a ng-click="Board.optionDataSelected = 'Generales';Board.userTweets=[]" >Generales</a></li>
-    <li role="presentation" ng-class="{active : Board.optionDataSelected == 'Influencers'}"><a ng-click="Board.optionDataSelected = 'Influencers';Board.userTweets=[]" >Influencers</a></li>
-    <li role="presentation" ng-class="{active : Board.optionDataSelected == 'Negativos'}"><a ng-click="Board.optionDataSelected = 'Negativos';Board.userTweets=[]" >Negativos</a></li>
-    <li role="presentation" ng-class="{active : Board.optionDataSelected == 'Positivos'}"><a ng-click="Board.optionDataSelected = 'Positivos';Board.userTweets=[]" >Positivos</a></li>
+        <li role="presentation" ng-class="{active : Board.optionDataSelected == 'Generales'}"><a ng-click="Board.optionDataSelected = 'Generales';Board.userTweets=[]">Generales</a></li>
+        <li role="presentation" ng-class="{active : Board.optionDataSelected == 'Influencers'}"><a ng-click="Board.optionDataSelected = 'Influencers';Board.userTweets=[]">Influencers</a></li>
+        <li role="presentation" ng-class="{active : Board.optionDataSelected == 'Negativos'}"><a ng-click="Board.optionDataSelected = 'Negativos';Board.userTweets=[]">Negativos</a></li>
+        <li role="presentation" ng-class="{active : Board.optionDataSelected == 'Positivos'}"><a ng-click="Board.optionDataSelected = 'Positivos';Board.userTweets=[]">Positivos</a></li>
     </ul>
 </div>
 
-    <div ng-show="Board.optionDataSelected == 'Generales'"
-         ng-include="'partials/data.generals.html'"></div>
-    <div ng-show="Board.optionDataSelected == 'Influencers'"
-         ng-include="'partials/data.influencers.html'"></div>
-    <div ng-show="Board.optionDataSelected == 'Negativos'"
-         ng-include="'partials/data.negative.html'"></div>
-    <div ng-show="Board.optionDataSelected == 'Positivos'"
-         ng-include="'partials/data.positive.html'"></div>
-
+<div ng-show="Board.optionDataSelected == 'Generales'" ng-include="'partials/data.generals.html'"></div>
+<div ng-show="Board.optionDataSelected == 'Influencers'" ng-include="'partials/data.influencers.html'"></div>
+<div ng-show="Board.optionDataSelected == 'Negativos'" ng-include="'partials/data.negative.html'"></div>
+<div ng-show="Board.optionDataSelected == 'Positivos'" ng-include="'partials/data.positive.html'"></div>
