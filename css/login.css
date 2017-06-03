@@ -1,0 +1,10 @@
+.login-view.container{
+    padding-top: 100px;
+}
+
+.login-view .logins img{
+    margin: 0 auto;
+    height: 60px;
+    margin-top: 40px;
+    cursor: pointer
+}
