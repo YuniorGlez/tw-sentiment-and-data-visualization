@@ -33,6 +33,7 @@
                 geo.X = tweet.coordinates.coordinates[0];
                 geo.Y = tweet.coordinates.coordinates[1];
             }
+            if (tweet.place != null) geo.place = tweet.place;
             if (tweet.place == null && tweet.user.location != null) geo.location = tweet.user.location;
             if (tweet.place == null && tweet.user.location == null && tweet.user.time_zone != null) geo.time_zone = tweet.user.time_zone;
             return geo;
