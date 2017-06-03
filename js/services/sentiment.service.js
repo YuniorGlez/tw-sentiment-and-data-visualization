@@ -63,16 +63,21 @@
 
             // Make parallel Calls divide by 100
             var allPromises = [], englishPromises = [], spanishPromises = [],
-                englishPieces = _.chunk(englishTexts.text_list, 100),
-                spanishPieces = _.chunk(spanishTexts.text_list, 100);
+                englishPieces = _.chunk(englishTexts.text_list, 200),
+                spanishPieces = _.chunk(spanishTexts.text_list, 200);
 
+            var ite = 0;
             englishPieces.forEach((texts) => {
                 var request = { text_list: texts };
-                englishPromises.push(monkeyPromise(urlEnglishAPI, request, config, 'English', tweets));
+                setTimeout(() =>
+                    englishPromises.push(monkeyPromise(urlEnglishAPI, request, config, 'English', tweets))
+                ,50*ite++);
             })
             spanishPieces.forEach((texts) => {
                 var request = { text_list: texts };
-                spanishPromises.push(monkeyPromise(urlSpanishAPI, request, config, 'Spanish', tweets));
+                setTimeout(() =>
+                    spanishPromises.push(monkeyPromise(urlSpanishAPI, request, config, 'Spanish', tweets))
+                ,50*ite++);
             })
 
             allPromises = _.concat(englishPromises, spanishPromises);
