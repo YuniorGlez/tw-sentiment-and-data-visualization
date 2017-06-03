@@ -6,8 +6,9 @@
             <th>Sentimiento</th>
             <th>Tweets</th>
         </tr>
-        <tr ng-repeat="user in ::Board.data.users | filter:Board.onlyNegative | limitTo: 10" ng-click="Board.userTweets = user.tweets">
-            <td>@{{user.username}}</td>
+        <tr ng-click="Board.getUserInfo(user)"
+            ng-repeat="user in Board.data.users | filter:Board.onlyNegative | limitTo: 10 track by user.id">
+            <td>@{{user.screen_name}}</td>
             <td>{{user.followers | number}}</td>
             <td ng-class="{'positive-color' : user.sentiment > 0, 'negative-color' : user.sentiment < 0}"><b>{{user.sentiment | number:2}}</b></td>
             <td>{{user.tweets.length}}</td>
