@@ -1,5 +1,9 @@
 /* Generals */
 
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
 .negative-color {
     color: red;
 }
@@ -11,7 +15,6 @@
 table.users-table tr {
     cursor: pointer
 }
-
 
 /*/////////////////  Modals for errors ////////////*/
 
@@ -61,8 +64,32 @@ table.users-table tr {
     background-color: rgb(180, 182, 218);
     height: 100vh;
     overflow-y: scroll;
-    padding: 20px 20px 20px 40px;
+    padding: 10px 20px 20px 40px;
     transition: 0.4s all ease;
+}
+.yun-modal .row.close-row .fa-close {
+    font-size: 1.5em;
+    padding-right: 20px;
+    color: slategrey;
+    cursor: pointer
+}
+.yun-modal .user-profile {
+    height: 150px;
+}
+.yun-modal .user-profile .user-photo {
+    text-align: center;
+
+}
+.yun-modal .user-profile .username {
+    font-size: 1.3em;
+    color: gray;
+    position: relative;
+    top: -5px;
+    left: 10px;
+}
+.yun-modal .user-photo img{
+    height: 100px;
+
 }
 
 .yun-modal.activate {
