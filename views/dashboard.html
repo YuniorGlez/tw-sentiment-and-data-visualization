@@ -6,9 +6,7 @@
         <button class="btn btn-default" type="button" ng-click="Board.search()">Buscar!</button>
       </span>
     </div>
-    <!-- /input-group -->
   </div>
-
   <div ng-cloak class="col-sm-8">
     <span ng-click="Board.changeSearch(oldSearch)" ng-repeat="oldSearch in Board.searchedParams">
       <b ng-if="oldSearch == Board.actualSearch">{{oldSearch}}</b>
@@ -18,7 +16,6 @@
 </nav>
 
 <main class="container" cg-busy="Board.makingRequest">
-
   <div class="col-sm-6">
     <div ng-include="'partials/map.html'"></div>
   </div>
@@ -27,59 +24,4 @@
   </div>
 </main>
 
-<div class="yun-modal" ng-class="{activate : Board.userSelected != null, }">
-  <div class="row">
-    <div class="col-sm-5">
-      <img ng-src="Board.userSelected.profile_image_url" alt="">
-    </div>
-    <div class="col-sm-7">
-      <div class="row">
-        <div class="username"><b>@{{Board.userSelected.screen_name}}</b></div>
-      </div>
-      <div class="row">
-        <p>{{Board.userSelected.description}}</p>
-      </div>
-      <div class="row">
-        <div class="followers_count">{{Board.userSelected.followers_count}} Seguidores</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-5">
-      <b>Stats</b>
-    </div>
-    <div class="col-sm-1">
-      |
-    </div>
-    <div class="col-sm-5">
-      <b>Tweets</b>
-    </div>
-  </div>
-
-  <div class="row stats-container">
-    <div id="user-chart-sentiment">
-
-    </div>
-    <div class="percentage">
-      <h2>{{Board.userSelected.sentiment}} </h2>
-      <span>Positivos</span>
-    </div>
-    <div class="sentiment-info">
-      <div class="row">
-        <h2>{{Board.userSelected.tweets.length}} Tweets</h2>
-      </div>
-      <div class="row">
-        {{Board.userSelected.numberOfRTsReceived}} RTs {{Board.userSelected.numberOfFavsReceived}} Favs
-      </div>
-    </div>
-  </div>
-
-  <blo class="row tweets-related">
-    <blockquote ng-repeat="tweet in Board.userSelected.tweets | filter:Board.relatedTweets track by tweet.id" class="col-sm-5 twitter-tweet"
-      ng-class="{negative : (tweet.sentiment < 0), positive : (tweet.sentiment > 0)}">
-      <a>{{::tweet.user.name}}</a>
-      <p>{{::tweet.text}}</p>
-    </blockquote>
-</div>
-</div>
+<user-modal user='Board.userSelected'></user-modal>
