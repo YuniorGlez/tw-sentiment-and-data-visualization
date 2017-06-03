@@ -2,9 +2,9 @@
     'use strict';
     angular.module('TFG').service('TransformService', TransformService);
 
-    TransformService.$inject = ['SentimentAnalysis'];
+    TransformService.$inject = ['SentimentAnalysis', 'UserModel'];
 
-    function TransformService(S) {
+    function TransformService(S, UserModel) {
         this.transformProcess = transformProcess;
         ////////////////
 
@@ -41,15 +41,14 @@
 
         function getUsersData(tweets) {
             var groupedByUsername = _.groupBy(tweets, (tw) => tw.user.screen_name);
-            _.forOwn(groupedByUsername, (tweets, username)  => {
-                var temp = angular.copy(tweets);
-                groupedByUsername[username] = {
+            _.forOwn(groupedByUsername, (tweetsUser, username)  => {
+                var temp = angular.copy(tweetsUser);
+                groupedByUsername[username] = angular.extend(new UserModel.User(tweetsUser[0].user) ,{
                     tweets: temp,
-                    username: username,
-                    id : tweets[0].user.id,
-                    followers: tweets[0].user.followers_count,
-                    sentiment: _.mean( tweets.filter((tw) => tw.sentiment != 0).map((tw) => tw.sentiment) )
-                };
+                    sentiment: _.sum(temp.map((tw) => tw.sentiment)) ||  0,
+                    numberOfRTsReceived : _.sum(temp.map((tw) => tw.retweet_count)) || 0,
+                    numberOfFavsReceived : _.sum(temp.map((tw) => tw.favorite_count)) || 0
+                });
             })
             return orderByFollowers(_.values(groupedByUsername));
         }
