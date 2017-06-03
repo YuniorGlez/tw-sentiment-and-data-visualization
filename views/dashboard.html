@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav class="navbar container">
   <div class="col-sm-4">
     <div class="input-group">
       <input type="text" class="form-control" ng-model="Board.searchParam" placeholder="Buscar ...">
@@ -27,7 +27,7 @@
   </div>
 </main>
 
-<div class="yun-modal" ng-if="true">
+<div class="yun-modal" ng-class="{activate : Board.userSelected != null, }">
   <div class="row">
     <div class="col-sm-5">
       <img ng-src="Board.userSelected.profile_image_url" alt="">

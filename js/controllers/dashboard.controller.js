@@ -20,7 +20,7 @@
 
         vm.searchedParams = [];
         vm.actualSearch = '';
-        vm.userSelected = {};
+        vm.userSelected = null;
         vm.data = {};
         vm.ready = false;
 
@@ -45,8 +45,8 @@
                 .then(successData, errorHandler);
         }
 
-        function getUserInfo(idUser){
-            TS.searchUserInfo(idUser)
+        function getUserInfo(idUser) {
+            vm.makingRequest = TS.searchUserInfo(idUser)
                 .then( (user) => {
                     if (!vm.userSelected)
                         vm.userSelected = user;
@@ -71,7 +71,6 @@
         function relatedTweets(tweet) {
             var flag = true;
             var copyLower = tweet.text.toLowerCase();
-            console.log(copyLower);
             allWordsToFind.forEach( (word) => {
                 if (copyLower.indexOf(word.toLowerCase()) == -1 ) flag = false;
             });
@@ -88,6 +87,7 @@
 
         function successData(data) {
             vm.data = data;
+            console.log(data);
             vm.ready = true;
             createCharts();
             createMap();
