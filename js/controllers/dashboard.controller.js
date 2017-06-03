@@ -45,16 +45,17 @@
                 .then(successData, errorHandler);
         }
 
-        function getUserInfo(idUser) {
-            vm.makingRequest = TS.searchUserInfo(idUser)
-                .then( (user) => {
-                    if (!vm.userSelected)
-                        vm.userSelected = user;
-                    else
-                        angular.extend(vm.userSelected, user);
-                });
-            TS.searchTweetsFromUser(idUser)
-                .then( (tweets) => vm.userSelected.tweets = tweets);
+        function getUserInfo(user) {
+            vm.userSelected = user;
+            // vm.makingRequest = TS.searchUserInfo(user.id)
+            //     .then( (user) => {
+            //         if (!vm.userSelected)
+            //             vm.userSelected = user;
+            //         else
+            //             angular.extend(vm.userSelected, user);
+            //     });
+            // TS.searchTweetsFromUser(idUser)
+            //     .then( (tweets) => vm.userSelected.tweets = tweets);
         }
 
         function changeSearch(searchParam) {
