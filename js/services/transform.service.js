@@ -43,18 +43,27 @@
             var groupedByUsername = _.groupBy(tweets, (tw) => tw.user.screen_name);
             _.forOwn(groupedByUsername, (tweetsUser, username)  => {
                 var temp = angular.copy(tweetsUser);
+                let onlyPositive = temp.filter((tweet) => tweet.sentiment > 0);
+                let positivePercentage = Math.round(onlyPositive.length / temp.length * 10000) / 100;
+                let onlyNegative = temp.filter((tweet) => tweet.sentiment < 0);
+                let negativePercentage = Math.round(onlyNegative.length / temp.length * 10000) / 100;
+                let onlyNeutral = temp.filter((tweet) => tweet.sentiment == 0);
+                let neutralPercentage = Math.round(onlyNeutral.length / temp.length * 10000) / 100;
                 groupedByUsername[username] = angular.extend(new UserModel.User(tweetsUser[0].user) ,{
                     tweets: temp,
                     sentiment: _.sum(temp.map((tw) => tw.sentiment)) ||  0,
                     numberOfRTsReceived : _.sum(temp.map((tw) => tw.retweet_count)) || 0,
-                    numberOfFavsReceived : _.sum(temp.map((tw) => tw.favorite_count)) || 0
+                    numberOfFavsReceived: _.sum(temp.map((tw) => tw.favorite_count)) ||  0,
+                    positivePercentage : positivePercentage,
+                    negativePercentage : negativePercentage,
+                    neutralPercentage : neutralPercentage
                 });
             })
             return orderByFollowers(_.values(groupedByUsername));
         }
 
         function orderByFollowers(users){
-            return _.orderBy(users, (u) => -u.followers);
+            return _.orderBy(users, (u) => -u.followers_count);
         }
 
         function getStats(tweets) {
@@ -84,6 +93,8 @@
                 var date = new Date(tweet.created_at);
                 return date.getDate() + '/' + (date.getMonth() + 1);
             });
+
+
         }
 
     }
