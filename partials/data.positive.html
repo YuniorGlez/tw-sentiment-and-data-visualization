@@ -9,7 +9,7 @@
         <tr ng-click="Board.getUserInfo(user)"
             ng-repeat="user in Board.data.users | filter:Board.onlyPositive | limitTo: 10 track by user.id">
             <td>@{{user.screen_name}}</td>
-            <td>{{user.followers | number}}</td>
+            <td>{{user.followers_count | number}}</td>
             <td ng-class="{'positive-color' : user.sentiment > 0, 'negative-color' : user.sentiment < 0}">
                 <b>{{user.sentiment | number:2}}</b>
             </td>
@@ -19,8 +19,8 @@
 </table>
 <div id="collapseTweets">
     <blockquote ng-repeat="tweet in Board.userTweets track by tweet.id" class="twitter-tweet" ng-class="{negative : (tweet.sentiment < 0), positive : (tweet.sentiment > 0)}">
-        <a>{{::tweet.user.name}}</a>
-        <p>{{::tweet.text}}</p>
+        <a>{{tweet.user.name}}</a>
+        <p>{{tweet.text}}</p>
     </blockquote>
 
 </div>
