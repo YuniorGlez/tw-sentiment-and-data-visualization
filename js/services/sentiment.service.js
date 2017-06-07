@@ -11,8 +11,8 @@
         };
 
         // Internal vars
-        var urlSpanishAPI = MonkeyData.spaClasificator;
-        var urlEnglishAPI = MonkeyData.engClasificator;
+        var urlSpanishAPI = MonkeyData.spaClassificator;
+        var urlEnglishAPI = MonkeyData.engClassificator;
         var config = {
             headers: MonkeyData.headers
         };
