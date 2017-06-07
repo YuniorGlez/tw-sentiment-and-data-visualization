@@ -24,10 +24,7 @@
                     plotShadow: false
                 },
                 title: {
-                    text: '',
-                    // align: 'center',
-                    // verticalAlign: 'middle',
-                    // y: 40
+                    text: ''
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -41,10 +38,7 @@
                                 fontWeight: 'bold',
                                 color: 'black'
                             }
-                        },
-                        // startAngle: -90,
-                        // endAngle: 90,
-                        // center: ['50%', '75%']
+                        }
                     }
                 },
                 series: [{
@@ -58,9 +52,16 @@
 
         function createTimelineChart(id, data) {
             var days = Object.keys(data);
-            var positivesByDay = _.mapValues(data, (day) => day.filter((tweet) => tweet.sentiment > 0).length);
-            var negativeByDay = _.mapValues(data, (day) => day.filter((tweet) => tweet.sentiment < 0).length);
-            var neutralByDay = _.mapValues(data, (day) => day.filter((tweet) => tweet.sentiment == 0).length);
+            days = _.sortBy(days, (day) => {
+                var m1 = parseInt(day.split('/')[1]);
+                var d1 = parseInt(day.split('/')[0]);
+                return m1 * 31 + d1;
+            });
+            var inTheRealDaysOrder = [];
+            days.forEach((k) => inTheRealDaysOrder.push(data[k]));
+            var positivesByDay = inTheRealDaysOrder.map((day) => day.filter((tweet) => tweet.sentiment > 0).length);
+            var negativeByDay = inTheRealDaysOrder.map((day) => day.filter((tweet) => tweet.sentiment < 0).length);
+            var neutralByDay = inTheRealDaysOrder.map((day) => day.filter((tweet) => tweet.sentiment == 0).length);
 
             Highcharts.chart(id, {
                 chart: {
@@ -110,21 +111,20 @@
                         }
                     }
                 },
-                series: [
-                    {
+                series: [{
                         name: 'Positivos',
                         data: Object.values(positivesByDay),
-                        color : 'green'
+                        color: 'green'
                     },
                     {
                         name: 'Neutral',
                         data: Object.values(neutralByDay),
-                        color : 'rgba(0,0,0,0.2)'
+                        color: 'rgba(0,0,0,0.2)'
                     },
                     {
                         name: 'Negativos',
                         data: Object.values(negativeByDay),
-                        color : 'red'
+                        color: 'red'
                     }
                 ]
             });
