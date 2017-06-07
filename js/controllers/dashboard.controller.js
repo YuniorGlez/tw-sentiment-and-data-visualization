@@ -47,15 +47,11 @@
 
         function getUserInfo(user) {
             vm.userSelected = user;
-            // vm.makingRequest = TS.searchUserInfo(user.id)
-            //     .then( (user) => {
-            //         if (!vm.userSelected)
-            //             vm.userSelected = user;
-            //         else
-            //             angular.extend(vm.userSelected, user);
-            //     });
-            // TS.searchTweetsFromUser(idUser)
-            //     .then( (tweets) => vm.userSelected.tweets = tweets);
+            CF.createPercentageChart('user-chart-sentiment', [
+                ['Negativos', user.negativePercentage],
+                ['Neutrales', user.neutralPercentage],
+                ['Positivos', user.positivePercentage]
+            ]);
         }
 
         function changeSearch(searchParam) {
@@ -108,9 +104,9 @@
 
         function createCharts() {
             CF.createPercentageChart('percentageChart', [
-                ['Negativos', vm.data.stats.negativePercentage],
-                ['Neutrales', vm.data.stats.neutralPercentage],
-                ['Positivos', vm.data.stats.positivePercentage]
+                ['Negativos', vm.data.stats.negativeTweets.length],
+                ['Neutrales', vm.data.stats.neutralTweets.length],
+                ['Positivos', vm.data.stats.positiveTweets.length]
             ]);
             CF.createTimelineChart('timelineChart', vm.data.timeline);
         }
