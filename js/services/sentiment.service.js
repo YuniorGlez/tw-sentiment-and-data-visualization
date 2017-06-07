@@ -65,7 +65,6 @@
             var allPromises = [], englishPromises = [], spanishPromises = [],
                 englishPieces = _.chunk(englishTexts.text_list, 200),
                 spanishPieces = _.chunk(spanishTexts.text_list, 200);
-
             var ite = 0;
             englishPieces.forEach((texts) => {
                 var request = { text_list: texts };
@@ -80,8 +79,16 @@
                 ,50*ite++);
             })
 
-            allPromises = _.concat(englishPromises, spanishPromises);
-            return $q.all(allPromises).then(() => { return tweets });
+            var promise = $q.defer();
+            setTimeout(() => {
+                allPromises = _.concat(englishPromises, spanishPromises);
+                return $q.all(allPromises).then(() => {
+                    promise.resolve(tweets);
+                    // return tweets
+                });
+
+            }, 50 * englishPieces.length * spanishPieces.length);
+            return promise.promise;
         }
 
         function monkeyPromise(url, texts, config, lang, tweets) {
@@ -111,6 +118,7 @@
                     FireBaseService.updateSentiment(lang, texts.text_list[idx], 0);
                 }
             });
+            return true;
         }
 
         function findTweetAndExtendWithAttr(tweets, trimmedText, attrs) {
