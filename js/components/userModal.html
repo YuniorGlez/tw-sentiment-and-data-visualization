@@ -32,14 +32,14 @@
     </div>
 
     <div class="row stats-container">
-        <div id="user-chart-sentiment">
+        <div class="chart col-sm-4"  id="user-chart-sentiment">
 
         </div>
-        <div class="percentage">
+        <div class="percentage col-sm-3">
             <h2 ng-class="{'negative-color' : UserCtrl.user.sentiment < 0 , 'positive-color' : UserCtrl.user.sentiment > 0 }">{{UserCtrl.user.sentiment}} </h2>
-            <span>Positivos</span>
+            <span>Sentimiento</span>
         </div>
-        <div class="sentiment-info">
+        <div class="sentiment-info col-sm-5">
             <div class="row">
                 <h2>{{UserCtrl.user.statuses_count}} Tweets</h2>
             </div>
@@ -52,9 +52,9 @@
     <div class="row tweets-related">
         <blockquote ng-repeat="tweet in UserCtrl.user.tweets | filter:Board.relatedTweets track by tweet.id" class="col-sm-5 twitter-tweet"
             ng-class="{negative : (tweet.sentiment < 0), positive : (tweet.sentiment > 0)}">
-            <a>{{::tweet.user.name}}</a>
-            <p>{{::tweet.text}}</p>
-            <p>{{::tweet.retweet_count}} RTs | {{tweet.favourite_count || 0}} Favs</p>
+            <a>{{tweet.user.name}}</a>
+            <p>{{tweet.text}}</p>
+            <p>{{tweet.retweet_count}} RTs | {{tweet.favourite_count || 0}} Favs</p>
         </blockquote>
     </div>
 </div>

@@ -80,6 +80,10 @@ table.users-table tr {
     text-align: center;
 
 }
+.yun-modal .user-photo img{
+    height: 100px;
+}
+
 .yun-modal .user-profile .username {
     font-size: 1.3em;
     color: gray;
@@ -87,10 +91,11 @@ table.users-table tr {
     top: -5px;
     left: 10px;
 }
-.yun-modal .user-photo img{
-    height: 100px;
-
+.yun-modal .stats-container {
+    margin-bottom: 40px;
+    padding-top: 30px;
 }
+
 
 .yun-modal.activate {
     right: 0;
@@ -105,6 +110,18 @@ table.users-table tr {
 .chart#percentageChart {
     width: 180px;
     height: 180px
+}
+
+.chart#user-chart-sentiment {
+    height: 160px;
+    margin-bottom: -40px;
+    margin-top: -25px;
+}
+.chart#user-chart-sentiment .highcharts-background{
+    fill: transparent
+}
+.chart#user-chart-sentiment .highcharts-credits{
+    display: none;
 }
 
 .map#map {
