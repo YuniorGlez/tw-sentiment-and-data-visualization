@@ -5,7 +5,7 @@
         .constant(
             'MonkeyData', {
                 headers : {
-                    "Authorization" : "Token cfbfbc1027280ee239c931823168b93030dac1ee",
+                    "Authorization" : "Token f248b1c833085a81c571f47e4886edb9b3799571",
                     "Content-Type" : "application/json"
                 },
                 spaClasificator : 'https://api.monkeylearn.com/v2/classifiers/cl_u9PRHNzf/classify/',
