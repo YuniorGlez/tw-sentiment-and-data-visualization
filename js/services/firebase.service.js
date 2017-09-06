@@ -8,8 +8,10 @@
     FireBaseService.$inject = [];
 
     function FireBaseService() {
-        this.resolveCachedTexts = resolveCachedTexts;
-        this.updateSentiment = updateSentiment;
+        var service = {
+            resolveCachedTexts : resolveCachedTexts,
+            updateSentiment : updateSentiment
+        }
 
         var fireDatabaseSpaTexts = firebase.database().ref('/texts/spa/');
         var fireDatabaseEngTexts = firebase.database().ref('/texts/eng/');
@@ -55,6 +57,6 @@
                 fireDatabaseSpaTexts.push(updateContent);
         }
 
-
+        return service;
     }
 })();

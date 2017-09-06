@@ -1,5 +1,5 @@
 <div class="text-center">
-    <ul class="nav nav-pills">
+    <ul class="nav nav-pills" ng-init="Board.optionMapSelected = 'Sentimiento'">
         <li role="presentation" ng-class="{active : Board.optionMapSelected == 'Sentimiento'}"><a ng-click="Board.optionMapSelected = 'Sentimiento'">Sentimiento</a></li>
         <li role="presentation" ng-class="{active : Board.optionMapSelected == 'Tweets'}"><a ng-click="Board.optionMapSelected = 'Tweets'">Tweets</a></li>
         <li role="presentation" ng-class="{active : Board.optionMapSelected == 'Recientes'}"><a ng-click="Board.optionMapSelected = 'Recientes'">Recientes</a></li>

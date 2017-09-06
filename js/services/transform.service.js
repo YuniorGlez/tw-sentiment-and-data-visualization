@@ -5,8 +5,10 @@
     TransformService.$inject = ['SentimentAnalysis', 'UserModel'];
 
     function TransformService(S, UserModel) {
-        this.transformProcess = transformProcess;
-        ////////////////
+
+        var service = {
+            transformProcess : transformProcess
+        }
 
         function transformProcess(tweets) {
             return addSentimentData(tweets);
@@ -96,6 +98,6 @@
 
 
         }
-
+        return service;
     }
 })();

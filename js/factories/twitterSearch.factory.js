@@ -7,6 +7,12 @@
         var api = 'https://tfg-yuniorglez.c9users.io/';
         var atp = 'access_token_key=';
         var ats = 'access_token_secret=';
+
+        var service = {
+            search: search,
+            searchUserInfo : searchUserInfo,
+            searchTweetsFromUser : searchTweetsFromUser
+        };
         ////////////////
 
         function search(param) {
@@ -16,12 +22,12 @@
                 url += '&' + atp + tw.oauthToken + '&'+  ats + tw.clientSecret;
                 return $http.get(url).then(successReadingTweets);
             }
-            else $http.get('/data/anotherFake.json').then(successReadingFakeTweets);
+            else return $http.get('/data/anotherFake.json').then(successReadingFakeTweets);
         }
 
 
         function searchUserInfo(idUser){
-            if ('logged' in localStorage && 'tw_object' in localStorage) {
+            if ('logged' in localStorage && 'tw_object' in loreturcalStorage) {
                 var tw = JSON.parse(localStorage.getItem('tw_object'));
                 var url = api + 'search/user/' + idUser;
                 url += '?'+ atp + tw.oauthToken + '&' + ats + tw.clientSecret;
@@ -78,7 +84,7 @@
             return T.transformProcess(tweetsParsed).then((tweets) => tweets);
         }
         function successReadingFakeTweets(response) {
-            successReadingTweets({ data: response.data.map((tw) => JSON.parse(tw)) });
+            return successReadingTweets({ data: response.data.map((tw) => JSON.parse(tw)) });
         }
 
         function successc9Response(response){
@@ -91,10 +97,6 @@
             var tweets = response.data.map((tweet) => new TweetModel.Tweet(tweet));
             return tweets;
         }
-        return {
-            search: search,
-            searchUserInfo : searchUserInfo,
-            searchTweetsFromUser : searchTweetsFromUser
-        };
+        return service;
     }
 })();

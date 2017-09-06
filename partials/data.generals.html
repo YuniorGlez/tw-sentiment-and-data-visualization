@@ -16,8 +16,8 @@
     </div>
     <br>
     <br>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseTweets">Ver Tweets</button>
-    <div class="collapse" id="collapseTweets">
+    <button class="btn btn-primary" type="button" ng-init="Board.showTweets = false" ng-click="Board.showTweets = !Board.showTweets">Ver Tweets</button>
+    <div ng-if="Board.showTweets">
         <blockquote ng-show="true" ng-repeat="tweet in Board.data.tweets track by $index" class="twitter-tweet" ng-class="{negative : (tweet.sentiment < 0), positive : (tweet.sentiment > 0)}">
             <a>{{tweet.user.name}}</a>
             <p>{{tweet.text}}</p>

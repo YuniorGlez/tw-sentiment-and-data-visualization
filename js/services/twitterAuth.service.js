@@ -9,7 +9,12 @@
     TwitterOauth.$inject = [];
 
     function TwitterOauth() {
-        this.signUp = signUp;
+        var service = {
+            signUp: signUp
+            // logIn: logIn,
+            // logOut: logOut
+        };
+
         var provider = new firebase.auth.TwitterAuthProvider();
         ////////////////
 
@@ -46,6 +51,6 @@
             });
         }
 
-
+        return service;
     }
 })();

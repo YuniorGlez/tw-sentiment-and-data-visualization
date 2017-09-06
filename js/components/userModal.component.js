@@ -13,18 +13,13 @@
 
     function UserModalController() {
         var UserCtrl = this;
-        UserCtrl.cleanUser = cleanUser;
+        UserCtrl.cleanUser = () => UserCtrl.user = null;
+        
         ////////////////
 
         UserCtrl.$onInit = function () {};
         UserCtrl.$onChanges = function (changesObj) {};
         UserCtrl.$onDestroy = function () { };
 
-        function cleanUser() {
-            // $('.yun-modal').removeClass('activate');
-            // setTimeout(() =>
-                UserCtrl.user = null
-            // ,200)
-        }
     }
 })();

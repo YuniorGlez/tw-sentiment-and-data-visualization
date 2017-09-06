@@ -1,0 +1,273 @@
+/*User home page*/
+
+.users-home .bar {
+    background-color: #7adfbb !important
+}
+
+@media screen and (min-width: 990px) {
+    .users-home .bar {
+        background-color: transparent !important
+    }
+}
+
+.users-home .bar ul a {
+    color: black !important;
+    opacity: 1
+}
+
+.users-home .bar .c_white {
+    color: white !important;
+}
+
+.users-home .bar * {
+    color: white !important;
+    font-weight: bold !important
+}
+
+.users-home .bar .dropdown__trigger {
+    opacity: 1
+}
+
+.users-home .bar .bar__module .btn--primary {
+    background-color: transparent;
+    border-color: white;
+}
+
+.users-home .bar .bar__module .btn--primary span {
+    color: white !important;
+}
+
+.users-home .bar .bar__module .inko-entrar-button {
+    border-color: white;
+}
+
+.users-home img.inko-mockup-header {
+    max-width: 80%;
+    margin-left: 10%
+}
+
+body.inko-home .main-container .cover {
+    height: 750px;
+}
+
+body.inko-home .main-container .text-iphone-col {
+    height: 100%;
+    margin-top: 15%;
+}
+
+body.inko-home .main-container .iphone-img {
+    margin-top: 106px;
+    text-align: right;
+}
+
+
+/* Tablets */
+
+@media screen and (max-width: 992px) {
+    body.inko-home .bar {
+        padding: 10px;
+    }
+    body.inko-home .bar .bar__module {
+        margin-bottom: 0;
+    }
+    body.inko-home .bar .bar__module .logo-light {
+        display: none
+    }
+    body.inko-home .bar .btn--primary {
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    body.inko-home .text-iphone-col {
+        width: 80%;
+        padding-left: 30px;
+    }
+    .feature h4+p {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+
+/* Mobile style */
+
+@media screen and (max-width: 990px) {
+    .users-home .inko-header-users .buttons {
+        text-align: center !important;
+    }
+    .users-home .inko-header-users .buttons a {
+        margin: 1em
+    }
+    .users-home .inko-features-users .feature p {
+        max-width: 100%
+    }
+    .users-home .bar .bar__module * {
+        text-align: center !important
+    }
+    .users-home .bar .bar__module a,
+    .users-home .bar .bar__module span {
+        font-size: 14px !important
+    }
+    .users-home .main-container section:first-child {
+        padding-top: 0px !important
+    }
+}
+
+
+/* caracteristicas view */
+
+.caracteristicas .inko-mockup {
+    background-size: 65% !important;
+    background-repeat: no-repeat !important
+}
+
+
+/* mobile style */
+
+@media (max-width: 767px) {
+    .btn {
+        margin: 10px 5px !important;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    .caracteristicas .imageblock__content {
+        display: none
+    }
+    .caracteristicas .inko-mockup {
+        display: none
+    }
+    .caracteristicas .tabs {
+        display: flex;
+        border: none;
+    }
+    .caracteristicas .tabs li {
+        width: 20%;
+        padding: 20px 0px;
+        margin-right: 8%
+    }
+    .caracteristicas .tabs li:first-child {}
+}
+
+
+/* Empresas View */
+
+body.empresas .bg--facebook {
+    padding-right: 28px;
+}
+
+body.empresas .inko-pad-top {
+    padding-top: 30px;
+}
+
+body.empresas .inko-pad-top .boxed {
+    position: relative;
+    top: 30px;
+}
+
+@media screen and (max-width: 990px) {
+    body.empresas .inko-header .switchable__text {
+        margin-top: 0em !important;
+    }
+    body.empresas .inko-register-box {
+        margin-top: 2em;
+    }
+    body.empresas .inko-icons {
+        padding: 45px;
+    }
+    body.empresas .inko-icons .col-xs-6 {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .empresas .tabs-container .tabs {
+        padding: 0 10px;
+        width: 82%;
+        font-size: 0.9em;
+    }
+    .empresas .tabs-container .tabs-content .switchable {
+        padding-top: 0;
+    }
+}
+
+
+/* Sobre nosotros View */
+
+@media screen and (max-width: 990px) {
+    body.sobre-nosotros .inko-periquito {
+        margin-top: 2em !important;
+    }
+    .main-container .boxed button[type="submit"] {
+        max-width: 96%;
+    }
+}
+
+
+/* Afiliados View */
+
+@media screen and (max-width: 990px) {
+    body.afiliados .inko-cards-section .col-sm-6 i {
+        font-size: 4em;
+    }
+}
+
+
+/* All */
+
+.clickable {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 990px) {
+    .menu-horizontal li {
+        text-align: center;
+        padding: 10px;
+    }
+}
+
+.icon__btn {
+    position: relative;
+    top: 3px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.btn.android {
+    padding-right: 25.56px;
+}
+
+.fcenter {
+    float: inherit !important;
+}
+
+@media screen and (max-width: 766px) {
+    .fnone {
+        float: none !important
+    }
+}
+
+@media screen and (max-width: 766px) {
+    .fnone {
+        float: none !important
+    }
+    .bar .container .row .right {
+        margin-right: 25px;
+    }
+}
+
+.cc_banner.cc_container{
+    background-color: white;
+    color: grey;
+}
+.cc_banner.cc_container a{
+    float: left;
+    margin-right: 15px;
+    background-color: #6ec9c2;
+    color: white;
+}
+.cc_banner.cc_container .cc_message{
+    font-size: 0.8em
+}
